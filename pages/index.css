@@ -15,6 +15,8 @@
 }
 .header {
   margin-top: 45px;
+  padding-bottom: 41px;
+  border-bottom: solid rgba(84, 84, 84, 0.7) 1px;
 }
 
 .profile {
@@ -22,9 +24,9 @@
   align-items: center;
   margin-top: 40px;
   margin-bottom: 51px;
-  border: red 1px solid;
 }
 .profile__title {
+  font-family: "Inter", Arial, sans-serif;
   font-size: 42px;
   line-height: 48px;
   font-weight: 500;
@@ -37,20 +39,26 @@
     "title button"
     "description description";
   grid-template-columns: minmax(auto, 373px) auto;
+  align-items: center;
 }
 .profile__edit-button {
   background: transparent url(../images/edit.svg) center no-repeat;
   height: 24px;
   width: 24px;
   grid-area: button;
+  border-color: white;
+  position: relative;
+  top: 2px;
 }
 .profile__add-button {
   background: transparent url(../images/add-icon.svg) center no-repeat;
   width: 150px;
   height: 50px;
   margin-left: auto;
+  border-color: white;
 }
 .profile__description {
+  font-family: "Inter", Arial, sans-serif;
   font-size: 18px;
   line-height: 22px;
   font-weight: 400;
@@ -74,7 +82,9 @@
   padding: 0;
   margin: 0;
 }
-
+.cards {
+  padding-bottom: 67px;
+}
 .card {
   display: flex;
   flex-direction: column;
@@ -90,16 +100,52 @@
   display: flex;
   background: white;
   color: black;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  height: 79px;
   padding-left: 20px;
   padding-right: 20px;
   align-items: center;
   justify-content: space-between;
+}
+.card__title {
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .card__like-button {
   background: transparent url(../images/like-button.svg) center no-repeat;
   width: 21px;
   height: 18px;
   border: none;
+}
+.footer {
+  color: #545454;
+  padding-bottom: 60px;
+}
+.footer__copyright {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin: 0;
+}
+@media screen and (max-width: 480px) {
+  .profile {
+    flex-direction: column;
+  }
+  .profile__info {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+  .profile__info {
+    width: 100%;
+    text-align: center;
+  }
 }
