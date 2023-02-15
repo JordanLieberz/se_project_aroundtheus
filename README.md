@@ -17,6 +17,9 @@ This project is a responsive wed design in order to display all elements correct
 - [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
 
 **Images**
+![Tablet Display](../Screen%20Shot%202023-02-15%20at%207.21.40%20PM.png)
+![Mobile Display](../Screen%20Shot%202023-02-15%20at%207.21.16%20PM.png)
+![Grid Card display for Desktop](../Screen%20Shot%202023-02-15%20at%207.20.59%20PM.png)
 
 ## Project features
 
@@ -35,4 +38,4 @@ This project is a responsive wed design in order to display all elements correct
 - Map of locations visited
 
 Guthub Pages Link:
-https://github.com/JordanLieberz/se_project_aroundtheus
+https://jordanlieberz.github.io/se_project_aroundtheus/
