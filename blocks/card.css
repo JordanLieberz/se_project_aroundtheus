@@ -1,4 +1,4 @@
-.card__list {
+.cards__list {
   display: -ms-grid;
   display: grid;
   -webkit-box-pack: center;
