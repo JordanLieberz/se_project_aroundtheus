@@ -16,7 +16,7 @@
   line-height: 48px;
   font-weight: 500;
   grid-area: title;
-  margin-bottom: 16px;
+  margin: 0;
 }
 .profile__info {
   display: -ms-grid;
@@ -29,6 +29,7 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  grid-gap: 16px 18px;
 }
 .profile__edit-button {
   -ms-grid-row: 1;
@@ -67,6 +68,7 @@
   line-height: 22px;
   font-weight: 400;
   grid-area: description;
+  margin: 0;
 }
 .profile__image {
   height: 120px;
