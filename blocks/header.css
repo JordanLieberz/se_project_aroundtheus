@@ -3,9 +3,17 @@
   padding-bottom: 41px;
   border-bottom: solid rgba(84, 84, 84, 0.7) 1px;
 }
-@media screen and (min-width: 320px) and (max-width: 480px) {
+@media screen and (max-width: 480px) {
+  .header {
+    margin-top: 28px;
+    padding-bottom: 32px;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
   .header__image {
     width: 126px;
     height: 24px;
+    padding-left: 27px;
   }
 }
