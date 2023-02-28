@@ -1,0 +1,122 @@
+.modal {
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 36px;
+}
+.modal__container {
+  position: relative;
+  background-color: white;
+  color: black;
+  width: 430px;
+  height: 330px;
+  border-radius: 10px;
+}
+.modal__header {
+  margin: 0;
+  padding-top: 34px;
+  padding-left: 36px;
+  padding-right: 64px;
+  padding-bottom: 54px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+}
+.modal__close {
+  border: none;
+  background-color: black;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: -38px;
+  right: -38px;
+}
+.modal__fieldset {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  gap: 30px;
+}
+.modal__form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.modal__input {
+  width: 358px;
+  font-size: 14px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  padding-bottom: 13px;
+}
+.modal__submit-button {
+  width: 358px;
+  height: 50px;
+  color: white;
+  background-color: black;
+  margin-top: 48px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  border: none;
+}
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .modal {
+    padding: 0;
+  }
+  .modal__container {
+    width: 282px;
+    height: 322px;
+    padding-bottom: 25px;
+  }
+  .modal__header {
+    padding-left: 22px;
+    padding-right: 22px;
+    padding-top: 25px;
+    padding-bottom: 75px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .modal__input {
+    width: 238px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+  }
+  .modal__submit-button {
+    width: 238px;
+    border-radius: 2px;
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 45px;
+  }
+  .modal__close {
+    top: -55px;
+    right: 0;
+  }
+}
