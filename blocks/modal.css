@@ -1,7 +1,6 @@
 .modal {
   display: none;
   background-color: rgba(0, 0, 0, 0.7);
-  /* display: flex; */
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -39,6 +38,13 @@
   position: absolute;
   top: -38px;
   right: -38px;
+  cursor: pointer;
+}
+.modal__close:hover {
+  opacity: 0.6;
+  -webkit-transition: all ease 0.5s;
+  -o-transition: all ease 0.5s;
+  transition: all ease 0.5s;
 }
 .modal__fieldset {
   display: flex;
@@ -83,7 +89,15 @@
   border-radius: 2px;
   border: none;
   margin-bottom: 0;
+  cursor: pointer;
 }
+.modal__submit-button:hover {
+  opacity: 0.8;
+  -webkit-transition: all ease 0.5s;
+  -o-transition: all ease 0.5s;
+  transition: all ease 0.5s;
+}
+
 @media screen and (min-width: 320px) and (max-width: 600px) {
   .modal {
     padding: 0;
