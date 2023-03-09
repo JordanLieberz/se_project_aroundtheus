@@ -24,6 +24,9 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg  ",
   },
 ];
+const cardTemplate = document
+  .querySelector("#card-template")
+  .content.querySelector(".card");
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -35,6 +38,7 @@ const profileDescription = document.querySelector("#profile-description");
 const saveButton = document.querySelector("#save-button");
 
 const profileEditForm = profileEditModal.querySelector(".modal__form");
+const cardListEl = document.querySelector(".card__list");
 
 function closePopUp() {
   profileEditModal.classList.remove("modal_opened");
@@ -55,3 +59,19 @@ profileEditButton.addEventListener("click", () => {
 modalCloseButton.addEventListener("click", closePopUp);
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+
+function getCardElement(data) {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
+
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
+  cardTitle.textContent = data.name;
+
+  return cardElement;
+}
+const cardsWrap = document.querySelector(".cards__list");
+for (let i = 0; i < initialCards.length; i++) {
+  cardsWrap.prepend(getCardElement(initialCards[i]));
+}
