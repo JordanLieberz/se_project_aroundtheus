@@ -52,7 +52,7 @@ function handleProfileEditSubmit(e) {
 }
 profileEditButton.addEventListener("click", () => {
   profileNameInput.value = profileName.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
+  profileDescriptionInput.value = profileDescription.textContent.trim();
   profileEditModal.classList.add("modal_opened");
 });
 
@@ -75,5 +75,3 @@ const cardsWrap = document.querySelector(".cards__list");
 for (let i = 0; i < initialCards.length; i++) {
   cardsWrap.prepend(getCardElement(initialCards[i]));
 }
-let description = document.getElementById("profile-description");
-description.innerHTML = description.innerHTML.trim();
