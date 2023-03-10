@@ -75,3 +75,5 @@ const cardsWrap = document.querySelector(".cards__list");
 for (let i = 0; i < initialCards.length; i++) {
   cardsWrap.prepend(getCardElement(initialCards[i]));
 }
+let description = document.getElementById("profile-description");
+description.innerHTML = description.innerHTML.trim();
