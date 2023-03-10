@@ -42,8 +42,6 @@
 }
 .modal__close:hover {
   opacity: 0.6;
-  -webkit-transition: all ease 0.5s;
-  -o-transition: all ease 0.5s;
   transition: all ease 0.5s;
 }
 .modal__fieldset {
@@ -93,8 +91,6 @@
 }
 .modal__submit-button:hover {
   opacity: 0.8;
-  -webkit-transition: all ease 0.5s;
-  -o-transition: all ease 0.5s;
   transition: all ease 0.5s;
 }
 
