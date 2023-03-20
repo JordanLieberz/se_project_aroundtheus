@@ -59,7 +59,6 @@ profileEditButton.addEventListener("click", () => {
 modalCloseButton.addEventListener("click", closePopUp);
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
-
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
@@ -68,10 +67,10 @@ function getCardElement(data) {
   cardImage.src = data.link;
   cardImage.alt = data.name;
   cardTitle.textContent = data.name;
-
   return cardElement;
 }
 const cardsWrap = document.querySelector(".cards__list");
-for (let i = 0; i < initialCards.length; i++) {
-  cardsWrap.prepend(getCardElement(initialCards[i]));
-}
+
+initialCards.forEach((data) => {
+  cardsWrap.prepend(getCardElement(data));
+});
