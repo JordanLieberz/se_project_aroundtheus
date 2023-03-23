@@ -10,9 +10,11 @@
   right: 0;
   padding: 36px;
 }
+
 .modal_opened {
   display: flex;
 }
+
 .modal__container {
   position: relative;
   background-color: white;
@@ -21,6 +23,7 @@
   border-radius: 10px;
   padding: 34px 36px 36px 36px;
 }
+
 .modal__header {
   margin: 0;
   margin-bottom: 54px;
@@ -30,6 +33,7 @@
   font-size: 24px;
   line-height: 29px;
 }
+
 .modal__close {
   border: none;
   background-color: black;
@@ -40,10 +44,12 @@
   right: -38px;
   cursor: pointer;
 }
+
 .modal__close:hover {
   opacity: 0.6;
   transition: all ease 0.5s;
 }
+
 .modal__fieldset {
   display: flex;
   flex-direction: column;
@@ -54,11 +60,13 @@
   gap: 30px;
   width: 100%;
 }
+
 .modal__form {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
+
 .modal__input {
   width: 100%;
   font-size: 14px;
@@ -72,6 +80,7 @@
   line-height: 17px;
   padding-bottom: 13px;
 }
+
 .modal__submit-button {
   width: 100%;
   height: 50px;
@@ -89,6 +98,7 @@
   margin-bottom: 0;
   cursor: pointer;
 }
+
 .modal__submit-button:hover {
   opacity: 0.8;
   transition: all ease 0.5s;

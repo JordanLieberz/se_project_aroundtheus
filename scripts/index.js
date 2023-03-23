@@ -90,12 +90,22 @@ profileModalCloseButton.addEventListener("click", () =>
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
+function handleCardClick(data) {
+  popupCaption.textContent = data.name;
+  popupImage.src = data.link;
+  popupImage.alt = data.name;
+}
+
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
   const likeButton = cardElement.querySelector(".card__like-button");
   const deleteButton = cardElement.querySelector(".card__delete-button");
+  const popupImage = document.querySelector(".modal__image");
+  const popupCaption = document.querySelector(".modal__caption");
+
+  cardImage.addEventListener("click", () => handleCardClick(data));
 
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
