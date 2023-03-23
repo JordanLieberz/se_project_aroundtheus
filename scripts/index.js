@@ -90,11 +90,17 @@ profileModalCloseButton.addEventListener("click", () =>
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
+const popupImage = document.querySelector(".modal__image");
+const popupCaption = document.querySelector(".modal__caption");
+const previewPopupNode = document.getElementById("view-image-modal");
+
 function handleCardClick(data) {
   popupCaption.textContent = data.name;
   popupImage.src = data.link;
   popupImage.alt = data.name;
+  openModal(previewPopupNode);
 }
+previewPopupNode.addEventListener("click", () => closeModal(previewPopupNode));
 
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -102,8 +108,6 @@ function getCardElement(data) {
   const cardTitle = cardElement.querySelector(".card__title");
   const likeButton = cardElement.querySelector(".card__like-button");
   const deleteButton = cardElement.querySelector(".card__delete-button");
-  const popupImage = document.querySelector(".modal__image");
-  const popupCaption = document.querySelector(".modal__caption");
 
   cardImage.addEventListener("click", () => handleCardClick(data));
 
