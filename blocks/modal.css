@@ -82,12 +82,11 @@
   font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
   line-height: 17px;
   padding-bottom: 13px;
 }
 
-.modal__submit-button {
+.card__submit-button {
   width: 100%;
   height: 50px;
   color: white;

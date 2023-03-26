@@ -32,11 +32,10 @@ const profileEditButton = document.querySelector("#profile-edit-button");
 const addCardModal = document.querySelector("#profile-add-modal");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileModalCloseButton = profileEditModal.querySelector(
-  "#modal-close-button"
+  "#profile-close-button"
 );
-const addCardModalCloseButton = addCardModal.querySelector(
-  "#modal-close-button"
-);
+const addCardModalCloseButton =
+  addCardModal.querySelector("#card-close-button");
 const profileNameInput = document.querySelector("#name-input");
 const profileName = document.querySelector("#profile-name");
 const profileDescriptionInput = document.querySelector("#about-me");
