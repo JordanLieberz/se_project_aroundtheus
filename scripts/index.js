@@ -44,7 +44,7 @@ const addNewCardButton = document.querySelector(".profile__add-button");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
 const cardListEl = document.querySelector(".card__list");
-
+const viewImageCloseButton = document.querySelector("#image-modal-close");
 const cardTitleInput = addCardFormElement.querySelector(
   ".modal__input_type_title"
 );
@@ -99,7 +99,7 @@ function handleCardClick(data) {
   popupImage.alt = data.name;
   openModal(previewPopupNode);
 }
-addCardModalCloseButton.addEventListener("click", () =>
+viewImageCloseButton.addEventListener("click", () =>
   closeModal(previewPopupNode)
 );
 console.log(addCardModalCloseButton);
