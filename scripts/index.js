@@ -102,7 +102,6 @@ function handleCardClick(data) {
 viewImageCloseButton.addEventListener("click", () =>
   closeModal(previewPopupNode)
 );
-console.log(addCardModalCloseButton);
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
