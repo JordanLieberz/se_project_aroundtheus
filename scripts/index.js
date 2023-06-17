@@ -52,6 +52,7 @@ const cardUrlInput = addCardFormElement.querySelector(".modal__input_type_url");
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keyup", (e) => escClose(e, modal));
 }
 
 function handleProfileEditSubmit(e) {
@@ -75,6 +76,7 @@ function handleAddCardFormSubmit(e) {
 }
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keyup", (e) => escClose(e, modal));
 }
 profileEditButton.addEventListener("click", () => {
   profileNameInput.value = profileName.textContent;
@@ -133,3 +135,8 @@ addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
 );
+function escClose(event, modal) {
+  if (event.key === "Escape") {
+    closeModal(modal);
+  }
+}
