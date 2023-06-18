@@ -25,7 +25,7 @@ function checkInputValidity(formEl, inputEl, options) {
 function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
   let foundInvalid = false;
   const inputEl = document.querySelector(".modal__input");
-  inputEls.forEach((input) => {
+  inputEls.forEach((inputEl) => {
     if (!inputEl.validity.valid) foundInvalid = true;
   });
 
@@ -48,6 +48,7 @@ function setEventListeners(formEl, options) {
       toggleButtonState(inputEls, submitButton, options);
     });
   });
+  toggleButtonState(inputEls, submitButton, options);
 }
 function enableValidation(options) {
   const formEls = [...document.querySelectorAll(options.formSelector)];
