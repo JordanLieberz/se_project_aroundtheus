@@ -24,6 +24,7 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg  ",
   },
 ];
+const modal = document.querySelector(".modal");
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
@@ -131,10 +132,29 @@ const cardsWrap = document.querySelector(".cards__list");
 
 initialCards.forEach((data) => renderCard(data, cardsWrap));
 
-addNewCardButton.addEventListener("click", () => openModal(addCardModal));
+addNewCardButton.addEventListener("click", () => {
+  // TODO: here we need to find the add card modal form and erase it;
+  addCardFormElement.reset();
+  openModal(addCardModal);
+});
 addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
 );
+
+document.addEventListener("mousedown", () => {
+  handleOverlayClick();
+});
+
+document.removeEventListener("mousedown", () => {
+  handleOverlayClick();
+});
+
+function handleOverlayClick(e) {
+  if (e.target.classList.contains("modal_opened")) {
+    closeModal();
+  }
+}
+
 function escClose(event, modal) {
   if (event.key === "Escape") {
     closeModal(modal);

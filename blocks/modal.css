@@ -104,7 +104,7 @@
   cursor: pointer;
 }
 
-.modal__submit-button:hover {
+.modal__submit-button:not(.modal__button_disabled):hover {
   opacity: 0.8;
   transition: all ease 0.5s;
 }
