@@ -1,3 +1,12 @@
+const config = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -54,7 +63,7 @@ const profileSubmitButton = document.querySelector("#profile-save-button");
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener("keyup", (e) => escClose(e, modal));
+  document.removeEventListener("keyup", escClose);
   modal.removeEventListener("mousedown", handleOverlayClick);
 }
 
@@ -76,10 +85,14 @@ function handleAddCardFormSubmit(e) {
   renderCard({ name, link }, cardsWrap);
   closeModal(addCardModal);
   e.target.reset();
+
+  const submitButton = addCardModal.querySelector(".modal__submit-button");
+  submitButton.classList.add(config.inactiveButtonClass);
+  submitButton.disabled = true;
 }
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  document.addEventListener("keyup", (e) => escClose(e, modal));
+  document.addEventListener("keyup", escClose);
   modal.addEventListener("mousedown", handleOverlayClick);
 }
 profileEditButton.addEventListener("click", () => {
@@ -88,7 +101,7 @@ profileEditButton.addEventListener("click", () => {
   toggleButtonState(
     [profileNameInput, profileDescriptionInput],
     profileSubmitButton,
-    options
+    config
   );
   openModal(profileEditModal);
 });
@@ -142,20 +155,11 @@ initialCards.forEach((data) => renderCard(data, cardsWrap));
 
 addNewCardButton.addEventListener("click", () => {
   // TODO: here we need to find the add card modal form and erase it;
-  addCardFormElement.reset();
   openModal(addCardModal);
 });
 addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
 );
-
-modal.addEventListener("mousedown", () => {
-  handleOverlayClick();
-});
-
-modal.removeEventListener("mousedown", () => {
-  handleOverlayClick();
-});
 
 function handleOverlayClick(e) {
   if (e.target.classList.contains("modal_opened")) {
@@ -163,8 +167,9 @@ function handleOverlayClick(e) {
   }
 }
 
-function escClose(event, modal) {
+function escClose(event) {
   if (event.key === "Escape") {
-    closeModal(modal);
+    const openedPopup = document.querySelector(".modal_opened");
+    closeModal(openedPopup);
   }
 }

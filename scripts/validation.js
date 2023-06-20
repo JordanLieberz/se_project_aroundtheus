@@ -1,3 +1,12 @@
+const options = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__submit-button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
 // enabling validation by calling enableValidation()
 // pass all the settings on call
 function showInputError(formEl, inputEl, options) {
@@ -38,7 +47,7 @@ function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
 }
 
 function setEventListeners(formEl, options) {
-  const submitButton = formEl.querySelector(".modal__submit-button");
+  const submitButton = formEl.querySelector(options.submitButtonSelector);
 
   const { inputSelector } = options;
   const inputEls = [...formEl.querySelectorAll(options.inputSelector)];
@@ -72,12 +81,4 @@ function enableValidation(options) {
   });
 }
 
-const options = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
 enableValidation(options);
