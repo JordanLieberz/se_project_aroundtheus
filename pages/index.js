@@ -1,7 +1,9 @@
+import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js";
 const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
+  submitButtonSelector: ".modal__submit-button",
   inactiveButtonClass: "modal__button_disabled",
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
@@ -33,6 +35,15 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg  ",
   },
 ];
+
+const cardData = {
+  name: "Yosemite Valley",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+};
+
+const card = new Card(cardData, "#card-template");
+card.getView();
+
 const modal = document.querySelector(".modal");
 const cardTemplate = document
   .querySelector("#card-template")
@@ -60,6 +71,12 @@ const cardTitleInput = addCardFormElement.querySelector(
 );
 const cardUrlInput = addCardFormElement.querySelector(".modal__input_type_url");
 const profileSubmitButton = document.querySelector("#profile-save-button");
+
+const CardFormValidator = new FormValidator(config, addCardFormElement);
+CardFormValidator.enableValidation();
+
+const profileEditFormValidator = new FormValidator(config, profileEditForm);
+profileEditFormValidator.enableValidation();
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
@@ -98,7 +115,7 @@ function openModal(modal) {
 profileEditButton.addEventListener("click", () => {
   profileNameInput.value = profileName.textContent;
   profileDescriptionInput.value = profileDescription.textContent.trim();
-  toggleButtonState(
+  profileEditFormValidator.toggleButtonState(
     [profileNameInput, profileDescriptionInput],
     profileSubmitButton,
     config
@@ -126,6 +143,15 @@ function handleCardClick(data) {
 viewImageCloseButton.addEventListener("click", () =>
   closeModal(previewPopupNode)
 );
+
+const validationSettings = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
