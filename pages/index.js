@@ -41,9 +41,6 @@ const cardData = {
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
 
-const card = new Card(cardData, "#card-template");
-card.getView();
-
 const modal = document.querySelector(".modal");
 const cardTemplate = document
   .querySelector("#card-template")
@@ -178,6 +175,15 @@ function getCardElement(data) {
 const cardsWrap = document.querySelector(".cards__list");
 
 initialCards.forEach((data) => renderCard(data, cardsWrap));
+
+initialCards.forEach((data) => {
+  const card = new Card(data, "#card-template");
+  const cardNode = card.getView();
+  console.log(cardNode);
+});
+
+// const card = new Card(cardData, "#card-template");
+// card.getView();
 
 addNewCardButton.addEventListener("click", () => {
   // TODO: here we need to find the add card modal form and erase it;
