@@ -94,10 +94,13 @@ const renderCard = (card) => {
 };
 
 function handleAddCardFormSubmit(e) {
+  debugger;
   e.preventDefault();
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
-  renderCard({ name, link }, cardsWrap);
+
+  const cardNode = getCardElement({ name, link });
+  renderCard(cardNode);
   closeModal(addCardModal);
   e.target.reset();
 
