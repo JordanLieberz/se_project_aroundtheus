@@ -94,7 +94,6 @@ const renderCard = (card) => {
 };
 
 function handleAddCardFormSubmit(e) {
-  debugger;
   e.preventDefault();
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
