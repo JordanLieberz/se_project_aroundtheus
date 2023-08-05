@@ -6,7 +6,6 @@ export default class Card {
   }
 
   _setEventListeners() {
-    //".card__like-button"
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {
@@ -17,8 +16,11 @@ export default class Card {
       .addEventListener("click", () => {
         this._handleDeleteButton();
       });
-
-    //".card__delete-button"
+    this._cardElement
+      .querySelector(".card__image")
+      .addEventListener("click", () => {
+        this._handleCardClick(this._name, this._link);
+      });
   }
 
   testMethod() {
