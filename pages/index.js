@@ -103,9 +103,6 @@ function handleAddCardFormSubmit(e) {
   closeModal(addCardModal);
   e.target.reset();
 
-  const submitButton = addCardModal.querySelector(".modal__submit-button");
-  submitButton.classList.add(config.inactiveButtonClass);
-  submitButton.disabled = true;
   cardFormValidator.toggleButtonState();
 }
 function openModal(modal) {
