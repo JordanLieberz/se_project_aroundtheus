@@ -150,7 +150,7 @@ const validationSettings = {
 };
 
 function getCardElement(data) {
-  const card = new Card(data, "#card-template");
+  const card = new Card(data, "#card-template", handleCardClick);
 
   return card.getView();
 }
