@@ -1,4 +1,5 @@
 import FormValidator from "./components/FormValidator.js";
+import PopupWithForm from "./components/PopupWithForm.js";
 import Card from "./components/Card.js";
 import "./pages/index.css";
 const config = {
@@ -9,6 +10,11 @@ const config = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
+
+const addCardPopup = new PopupWithForm("#card-add-modal", () => {
+  console.log("I am the second argument");
+});
+addCardPopup.setEventListeners();
 
 const initialCards = [
   {
@@ -162,7 +168,8 @@ initialCards.forEach((data) => {
 
 addNewCardButton.addEventListener("click", () => {
   // TODO: here we need to find the add card modal form and erase it;
-  openModal(addCardModal);
+  // openModal(addCardModal);
+  addCardPopup.open();
 });
 addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
