@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Jordan Lieberz" />
     <link rel="icon" href="./favicon.ico" />
-    <title>Anpm 
+    <title>Jordan Page</title>
   </head>
   <body class="page">
     <div class="page__content">
@@ -47,7 +47,7 @@
       <div class="modal" id="profile-edit-modal">
         <div class="modal__container">
           <button type="button" class="modal__close" id="profile-close-button">
-            <img src="./images/Close.svg" alt="Close Icon" />
+            <img src="<%=require('./images/Close.svg')%>" alt="Close Icon" />
           </button>
           <h2 class="modal__header">Edit Profile</h2>
           <form class="modal__form">
@@ -56,6 +56,7 @@
                 <input
                   class="modal__input modal__input_type_name"
                   id="name-input"
+                  name="name"
                   type="text"
                   placeholder="Name"
                   minlength="2"
@@ -68,6 +69,7 @@
                 <input
                   class="modal__input modal__input_type_description"
                   id="about-me"
+                  name="about"
                   type="text"
                   placeholder="Description"
                   minlength="2"
@@ -91,7 +93,7 @@
       <div class="modal" id="card-add-modal">
         <div class="modal__container">
           <button type="button" class="modal__close" id="card-close-button">
-            <img src="./images/Close.svg" alt="Close Icon" />
+            <img src="<%=require('./images/Close.svg')%>" alt="Close Icon" />
           </button>
           <h2 class="modal__header">New Place</h2>
           <form class="modal__form">
@@ -100,7 +102,7 @@
                 <input
                   class="modal__input modal__input_type_title"
                   id="card-title"
-                  name="title"
+                  name="name"
                   type="text"
                   placeholder="Title"
                   required
@@ -113,7 +115,7 @@
                 <input
                   class="modal__input modal__input_type_url"
                   id="card-url"
-                  name="url"
+                  name="link"
                   type="url"
                   placeholder="Image URL"
                   required
@@ -134,7 +136,7 @@
       <div class="modal" id="view-image-modal">
         <div class="modal__container modal__container_type_preview">
           <button type="button" class="modal__close" id="image-modal-close">
-            <img src="./images/Close.svg" alt="Close Icon" />
+            <img src="<%=require('./images/Close.svg')%>" alt="Close Icon" />
           </button>
           <img src="#" class="modal__image" id="modal-image" alt="button" />
           <p class="modal__caption"></p>
