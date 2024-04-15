@@ -1,8 +1,9 @@
-import FormValidator from "./components/FormValidator.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import PopupWithImage from "./components/PopupWithImage.js";
-import Card from "./components/Card.js";
-import "./pages/index.css";
+import FormValidator from "../components/FormValidator.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import Card from "../components/Card.js";
+import "./index.css";
+import UserInfo from "../components/UserInfo.js";
 const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -26,28 +27,7 @@ editProfilePopup.setEventListeners();
 
 const addImagePopup = new PopupWithImage("#view-image-modal");
 
-class UserInfo {
-  constructor(nameSelector, aboutSelector) {
-    this.nameEl = document.querySelector(nameSelector);
-    this.aboutEl = document.querySelector(aboutSelector);
-  }
-
-  getUserInfo() {
-    const userName = this.nameEl.textContent;
-    const userAbout = this.aboutEl.textContent;
-    return { name: userName, about: userAbout };
-  }
-  setUserInfo({ name, about }) {
-    this.nameEl.textContent = name;
-    this.aboutEl.textContent = about;
-  }
-}
 const userInfo = new UserInfo("#profile-name", "#profile-description");
-
-const currentUserInfo = userInfo.getUserInfo();
-
-const newUser = { name: "Jacques Cousteau", about: "Explorer" };
-userInfo.setUserInfo(newUser);
 
 const initialCards = [
   {
@@ -116,16 +96,9 @@ cardFormValidator.enableValidation();
 const profileEditFormValidator = new FormValidator(config, profileEditForm);
 profileEditFormValidator.enableValidation();
 
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keyup", handleClose);
-  modal.removeEventListener("mousedown", handleOverlayClick);
-}
-
 function handleProfileEditSubmit(values) {
-  profileName.textContent = values.name;
-  profileDescription.textContent = values.about;
-  closeModal(profileEditModal);
+  userInfo.setUserInfo(values);
+  editProfilePopup.close();
 }
 
 const renderCard = (card) => {
@@ -135,29 +108,20 @@ const renderCard = (card) => {
 function handleAddCardFormSubmit(values) {
   const cardNode = getCardElement(values);
   renderCard(cardNode);
-  closeModal(addCardModal);
-  //e.target.reset();
+  addCardPopup.close();
 
   cardFormValidator.toggleButtonState();
 }
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keyup", handleClose);
-  modal.addEventListener("mousedown", handleOverlayClick);
-}
+
 profileEditButton.addEventListener("click", () => {
-  profileNameInput.value = profileName.textContent;
-  profileDescriptionInput.value = profileDescription.textContent.trim();
+  userInfo.getUserInfo();
   profileEditFormValidator.toggleButtonState();
-  openModal(profileEditModal);
+  editProfilePopup.open();
 });
 
 profileModalCloseButton.addEventListener("click", () =>
-  closeModal(profileEditModal)
+  editProfilePopup.close()
 );
-
-//profileEditForm.addEventListener("submit", handleProfileEditSubmit);
-//addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 const popupImage = document.querySelector(".modal__image");
 const popupCaption = document.querySelector(".modal__caption");
@@ -166,9 +130,7 @@ const previewPopupNode = document.getElementById("view-image-modal");
 function handleCardClick(data) {
   addImagePopup.open(data);
 }
-viewImageCloseButton.addEventListener("click", () =>
-  closeModal(previewPopupNode)
-);
+viewImageCloseButton.addEventListener("click", () => addImagePopup.close());
 
 const validationSettings = {
   inputSelector: ".modal__input",
@@ -192,19 +154,9 @@ initialCards.forEach((data) => {
 });
 
 addNewCardButton.addEventListener("click", () => {
-  // TODO: here we need to find the add card modal form and erase it;
-  // openModal(addCardModal);
   addCardPopup.open();
 });
-addCardModalCloseButton.addEventListener("click", () =>
-  closeModal(addCardModal)
-);
-
-function handleOverlayClick(e) {
-  if (e.target.classList.contains("modal_opened")) {
-    closeModal(e.target);
-  }
-}
+addCardModalCloseButton.addEventListener("click", () => addCardPopup.close());
 
 function handleClose(event) {
   if (event.key === "Escape") {

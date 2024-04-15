@@ -18,7 +18,6 @@ class Section {
 
 // index.js
 
-const initialCards = [];
 const selector = "#card__list";
 
 const section = new Section(

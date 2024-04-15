@@ -18,19 +18,15 @@ export default class Popup {
     );
   }
 
-  handleEscClose(event) {
+  handleEscClose = (event) => {
     if (event.key === "Escape") {
       this.close();
     }
-  }
+  };
 
-  setEventlisteners() {
-    // set event listeners
-  }
-
-  handleOverlayClick(e) {
+  handleOverlayClick = (e) => {
     if (e.target.classList.contains("modal_opened")) {
-      closeModal(e.target);
+      this.closeModal(e.target);
     }
-  }
+  };
 }
