@@ -6,7 +6,7 @@ class UserInfo {
 
   getUserInfo() {
     const userName = this.nameEl.textContent;
-    const userAbout = this.aboutEl.textContent;
+    const userAbout = this.aboutEl.textContent.trim();
     return { name: userName, about: userAbout };
   }
   setUserInfo({ name, about }) {

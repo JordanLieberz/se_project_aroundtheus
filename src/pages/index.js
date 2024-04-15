@@ -114,7 +114,9 @@ function handleAddCardFormSubmit(values) {
 }
 
 profileEditButton.addEventListener("click", () => {
-  userInfo.getUserInfo();
+  const values = userInfo.getUserInfo();
+  profileNameInput.value = values.name;
+  profileDescriptionInput.value = values.about;
   profileEditFormValidator.toggleButtonState();
   editProfilePopup.open();
 });
