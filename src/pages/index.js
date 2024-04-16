@@ -113,6 +113,7 @@ profileEditFormValidator.enableValidation();
 
 function handleProfileEditSubmit(values) {
   userInfo.setUserInfo(values);
+  editProfilePopup.close();
 }
 
 function handleAddCardFormSubmit(values) {
