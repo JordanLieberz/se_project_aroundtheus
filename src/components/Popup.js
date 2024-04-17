@@ -4,10 +4,16 @@ export default class Popup {
     this._closeButton = this._popupElement.querySelector(".modal__close");
   }
 
+  _handleCloseClick() {
+    () => {
+      this.close();
+    };
+  }
   open() {
     this._popupElement.classList.add("modal_opened");
     document.addEventListener("keyup", this.handleEscClose);
     this._popupElement.addEventListener("mousedown", this.handleOverlayClick);
+    this._popupElement.addEventListener("click", () => _handleCloseClick());
   }
 
   close() {
@@ -17,6 +23,7 @@ export default class Popup {
       "mousedown",
       this.handleOverlayClick
     );
+    this._popupElement.removeEventListener("click", () => _handleCloseClick());
   }
   setEventListeners() {
     this._closeButton.addEventListener("click", () => {

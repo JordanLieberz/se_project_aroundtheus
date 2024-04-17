@@ -119,6 +119,7 @@ function handleProfileEditSubmit(values) {
 function handleAddCardFormSubmit(values) {
   const cardNode = getCardElement(values);
   section.addItem(cardNode);
+  addCardPopup.close();
 }
 
 profileEditButton.addEventListener("click", () => {

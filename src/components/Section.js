@@ -15,19 +15,3 @@ export default class Section {
     this._wrapper.prepend(element);
   }
 }
-
-// const selector = ".cards__list";
-
-// const section = new Section(
-//   {
-//     items: initialCards,
-//     renderer: (cardData) => {
-//       const card = getCardElement(cardData);
-//       // create a new card with cardData
-//       section.addItem(card);
-//     },
-//   },
-//   selector
-// );
-
-// section.renderItems();
