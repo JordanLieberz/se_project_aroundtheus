@@ -160,4 +160,3 @@ addNewCardButton.addEventListener("click", () => {
   cardFormValidator.toggleButtonState();
   addCardPopup.open();
 });
-addCardModalCloseButton.addEventListener("click", () => addCardPopup.close());
