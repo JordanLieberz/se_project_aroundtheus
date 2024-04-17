@@ -28,6 +28,8 @@ editProfilePopup.setEventListeners();
 
 const addImagePopup = new PopupWithImage("#view-image-modal");
 
+addImagePopup.setEventListeners();
+
 const userInfo = new UserInfo("#profile-name", "#profile-description");
 
 const initialCards = [
@@ -141,7 +143,6 @@ const previewPopupNode = document.getElementById("view-image-modal");
 function handleCardClick(data) {
   addImagePopup.open(data);
 }
-viewImageCloseButton.addEventListener("click", () => addImagePopup.close());
 
 const validationSettings = {
   inputSelector: ".modal__input",
