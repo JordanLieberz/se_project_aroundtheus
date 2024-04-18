@@ -46,13 +46,11 @@
       <!-- Edit profile modal -->
       <div class="modal" id="profile-edit-modal">
         <div class="modal__container">
-          <button type="button" class="modal__close" id="profile-close-button">
-            <img
-              class="Image__modal__close"
-              src="<%=require('./images/Close.svg')%>"
-              alt="Close Icon"
-            />
-          </button>
+          <button
+            type="button"
+            class="modal__close"
+            id="profile-close-button"
+          ></button>
           <h2 class="modal__header">Edit Profile</h2>
           <form class="modal__form">
             <fieldset class="modal__fieldset">
@@ -96,13 +94,11 @@
       <!--Add card modal -->
       <div class="modal" id="card-add-modal">
         <div class="modal__container">
-          <button type="button" class="modal__close" id="card-close-button">
-            <img
-              class="Image__modal__close"
-              src="<%=require('./images/Close.svg')%>"
-              alt="Close Icon"
-            />
-          </button>
+          <button
+            type="button"
+            class="modal__close"
+            id="card-close-button"
+          ></button>
           <h2 class="modal__header">New Place</h2>
           <form class="modal__form">
             <fieldset class="modal__fieldset">
@@ -143,9 +139,11 @@
       </div>
       <div class="modal" id="view-image-modal">
         <div class="modal__container modal__container_type_preview">
-          <button type="button" class="modal__close" id="image-modal-close">
-            <img src="<%=require('./images/Close.svg')%>" alt="Close Icon" />
-          </button>
+          <button
+            type="button"
+            class="modal__close"
+            id="image-modal-close"
+          ></button>
           <img src="#" class="modal__image" id="modal-image" alt="button" />
           <p class="modal__caption"></p>
         </div>
