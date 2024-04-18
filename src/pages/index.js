@@ -132,10 +132,6 @@ profileEditButton.addEventListener("click", () => {
   editProfilePopup.open();
 });
 
-profileModalCloseButton.addEventListener("click", () =>
-  editProfilePopup.close()
-);
-
 const popupImage = document.querySelector(".modal__image");
 const popupCaption = document.querySelector(".modal__caption");
 const previewPopupNode = document.getElementById("view-image-modal");

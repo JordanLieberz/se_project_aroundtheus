@@ -17,8 +17,8 @@ export default class Popup {
       "mousedown",
       this.handleOverlayClick
     );
-    this._popupElement.removeEventListener("click", this._handleCloseClick);
   }
+
   setEventListeners() {
     this._closeButton.addEventListener("click", () => {
       this.close();
@@ -33,6 +33,8 @@ export default class Popup {
 
   handleOverlayClick = (e) => {
     if (e.target.classList.contains("modal_opened")) {
+      this.close();
+    } else if (e.target.classList.contains("Image__modal__close")) {
       this.close();
     }
   };
