@@ -19,10 +19,13 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            class="profile__image"
-          />
+          <div class="profile__avatar-container">
+            <img
+              src="<%=require('./images/jacques-cousteau.jpg')%>"
+              class="profile__image"
+            />
+            <button class="profile__avatar-edit">Edit</button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title" id="profile-name">Jacques Cousteau</h1>
             <button
@@ -41,7 +44,7 @@
         </section>
       </main>
       <footer class="footer page__section">
-        <p class="footer__copyright">© 2023 Around The U.S.</p>
+        <p class="footer__copyright">© 2024 Around The U.S.</p>
       </footer>
       <!-- Edit profile modal -->
       <div class="modal" id="profile-edit-modal">
@@ -159,5 +162,38 @@
         </div>
       </li>
     </template>
+    <div class="modal" id="profile-picture-modal">
+      <div class="modal__container">
+        <button
+          type="button"
+          class="modal__close"
+          id="card-close-button"
+        ></button>
+        <h2 class="modal__header">Change Profile Picture</h2>
+        <form class="modal__form">
+          <fieldset class="modal__fieldset">
+            <label class="modal__label">
+              <input
+                class="modal__input modal__input_type_title"
+                id="avatar-link"
+                name="avatar"
+                type="text"
+                placeholder="Link"
+                required
+                minlength="1"
+              />
+              <span class="modal__error" id="avatar-link-error"></span>
+            </label>
+          </fieldset>
+          <button
+            id="card-save-button"
+            class="modal__submit-button"
+            type="submit"
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

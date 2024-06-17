@@ -5,6 +5,8 @@ import Card from "../components/Card.js";
 import "./index.css";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
+import Api from "../components/Api.js";
+
 const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -13,6 +15,47 @@ const config = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "96d8d88b-e023-4fc5-b12a-b613f7a6a6e2",
+    "Content-Type": "application/json",
+  },
+});
+
+let section; // undefined
+
+api
+  .getInitialCards()
+  .then((cards) => {
+    section = new Section(
+      {
+        items: cards,
+        renderer: (cardData) => {
+          const card = getCardElement(cardData);
+          // create a new card with cardData
+          section.addItem(card);
+        },
+      },
+      selector
+    );
+    section.renderItems();
+    // render initial cards here
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
+const userInfo = new UserInfo(
+  "#profile-name",
+  "#profile-description",
+  ".profile__image"
+);
+
+api.getUserInfo().then((userData) => {
+  userInfo.setUserInfo(userData);
+});
 
 const addCardPopup = new PopupWithForm(
   "#card-add-modal",
@@ -30,53 +73,19 @@ const addImagePopup = new PopupWithImage("#view-image-modal");
 
 addImagePopup.setEventListeners();
 
-const userInfo = new UserInfo("#profile-name", "#profile-description");
-
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg  ",
-  },
-];
-
-const cardData = {
-  name: "Yosemite Valley",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-};
-const selector = ".cards__list";
-
-const section = new Section(
-  {
-    items: initialCards,
-    renderer: (cardData) => {
-      const card = getCardElement(cardData);
-      // create a new card with cardData
-      section.addItem(card);
-    },
-  },
-  selector
+const ChangeProfilePicture = new PopupWithForm(
+  "#profile-picture-modal",
+  handleAvatarFormSubmit
 );
-section.renderItems();
+ChangeProfilePicture.setEventListeners();
+
+const avatarElement = document.querySelector(".profile__avatar-container");
+
+avatarElement.addEventListener("click", () => {
+  ChangeProfilePicture.open();
+});
+
+const selector = ".cards__list";
 
 const modal = document.querySelector(".modal");
 const cardTemplate = document
@@ -114,14 +123,33 @@ const profileEditFormValidator = new FormValidator(config, profileEditForm);
 profileEditFormValidator.enableValidation();
 
 function handleProfileEditSubmit(values) {
-  userInfo.setUserInfo(values);
-  editProfilePopup.close();
+  api
+    .updateUserInfo(values)
+    .then((userData) => {
+      userInfo.setUserInfo(userData);
+      editProfilePopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      // i think you do use this later in the sprint.  Maybe to close the popup?
+    });
 }
 
 function handleAddCardFormSubmit(values) {
-  const cardNode = getCardElement(values);
-  section.addItem(cardNode);
-  addCardPopup.close();
+  // {name: '', link: ''}
+  api.addCard(values).then((cardData) => {
+    const cardNode = getCardElement(cardData);
+    section.addItem(cardNode);
+    addCardPopup.close();
+  });
+}
+function handleAvatarFormSubmit(values) {
+  api.updateAvatarPhoto(values).then((userData) => {
+    userInfo.setAvatar(userData.avatar);
+    ChangeProfilePicture.close();
+  });
 }
 
 profileEditButton.addEventListener("click", () => {
