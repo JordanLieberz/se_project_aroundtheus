@@ -154,6 +154,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.profile__avatar-edit-button {
+  background-color: transparent;
+}
 
 .profile__avatar-container:hover .profile__avatar-edit {
   visibility: visible;
