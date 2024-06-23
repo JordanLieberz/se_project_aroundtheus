@@ -63,5 +63,17 @@ export default class Api {
     });
   }
 
-  // other methods for working with the API
+  handleLike(cardId, isLiked) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: isLiked ? "DELETE" : "PUT",
+      headers: this._headers,
+      body: JSON.stringify(),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+    });
+  }
 }
+
+// other methods for working with the API

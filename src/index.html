@@ -27,7 +27,7 @@
             <button class="profile__avatar-edit">
               <img
                 class="profile__avatar-edit-button"
-                src="<%=require('./images/Vector.svg')%>"
+                src="<%=require('./images/vector.png')%>"
               />
             </button>
           </div>
@@ -196,6 +196,25 @@
             type="submit"
           >
             Save
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="modal" id="delete-popup">
+      <div class="modal__container modal__container_delete">
+        <button
+          type="button"
+          class="modal__close"
+          id="card-close-button"
+        ></button>
+        <h2 class="modal__header">Are you sure?</h2>
+        <form class="modal__form">
+          <button
+            id="card-save-button"
+            class="modal__submit-button"
+            type="submit"
+          >
+            Yes
           </button>
         </form>
       </div>

@@ -79,6 +79,8 @@ const ChangeProfilePicture = new PopupWithForm(
 );
 ChangeProfilePicture.setEventListeners();
 
+const deletePopup = new PopupWithForm("#delete-popup");
+
 const avatarElement = document.querySelector(".profile__avatar-container");
 
 avatarElement.addEventListener("click", () => {
@@ -123,6 +125,8 @@ const profileEditFormValidator = new FormValidator(config, profileEditForm);
 profileEditFormValidator.enableValidation();
 
 function handleProfileEditSubmit(values) {
+  // change text to 'saving...'
+  editProfilePopup.setLoading(true);
   api
     .updateUserInfo(values)
     .then((userData) => {
@@ -133,23 +137,44 @@ function handleProfileEditSubmit(values) {
       console.log(err);
     })
     .finally(() => {
+      // change text to default
+      editProfilePopup.setLoading(false);
       // i think you do use this later in the sprint.  Maybe to close the popup?
     });
 }
 
 function handleAddCardFormSubmit(values) {
-  // {name: '', link: ''}
-  api.addCard(values).then((cardData) => {
-    const cardNode = getCardElement(cardData);
-    section.addItem(cardNode);
-    addCardPopup.close();
-  });
+  addCardPopup.setLoading(true);
+  api
+    .addCard(values)
+    .then((cardData) => {
+      const cardNode = getCardElement(cardData);
+      section.addItem(cardNode);
+      addCardPopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      // change text to default
+      addCardPopup.setLoading(false);
+      // i think you do use this later in the sprint.  Maybe to close the popup?
+    });
 }
 function handleAvatarFormSubmit(values) {
-  api.updateAvatarPhoto(values).then((userData) => {
-    userInfo.setAvatar(userData.avatar);
-    ChangeProfilePicture.close();
-  });
+  ChangeProfilePicture.setLoading(true);
+  api
+    .updateAvatarPhoto(values)
+    .then((userData) => {
+      userInfo.setAvatar(userData.avatar);
+      ChangeProfilePicture.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      ChangeProfilePicture.setLoading(false);
+    });
 }
 
 profileEditButton.addEventListener("click", () => {
@@ -168,6 +193,15 @@ function handleCardClick(data) {
   addImagePopup.open(data);
 }
 
+function handleLikeClick(card) {
+  api.handleLike(card.id, card.isLiked).then((res) => {
+    card.updateIsLiked(res.isLiked);
+  });
+}
+function handleDeleteClick(card) {
+  deletePopup.open();
+}
+
 const validationSettings = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
@@ -176,7 +210,13 @@ const validationSettings = {
   errorClass: "modal__error_visible",
 };
 function getCardElement(data) {
-  const card = new Card(data, "#card-template", handleCardClick);
+  const card = new Card(
+    data,
+    "#card-template",
+    handleCardClick,
+    handleLikeClick,
+    handleDeleteClick
+  );
 
   return card.getView();
 }
