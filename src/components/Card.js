@@ -54,7 +54,7 @@ export default class Card {
     }
   }
 
-  _handleDeleteButton() {
+  deleteCard() {
     this._cardElement.remove();
   }
 

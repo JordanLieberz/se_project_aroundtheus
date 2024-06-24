@@ -166,3 +166,7 @@
 .profile__avatar-container:hover .profile__image {
   opacity: 0.6;
 }
+
+.modal__header_delete {
+  margin-bottom: 0;
+}

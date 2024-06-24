@@ -55,6 +55,7 @@ const userInfo = new UserInfo(
 
 api.getUserInfo().then((userData) => {
   userInfo.setUserInfo(userData);
+  userInfo.setAvatar(userData.avatar);
 });
 
 const addCardPopup = new PopupWithForm(
@@ -80,6 +81,7 @@ const ChangeProfilePicture = new PopupWithForm(
 ChangeProfilePicture.setEventListeners();
 
 const deletePopup = new PopupWithForm("#delete-popup");
+deletePopup.setEventListeners();
 
 const avatarElement = document.querySelector(".profile__avatar-container");
 
@@ -200,6 +202,19 @@ function handleLikeClick(card) {
 }
 function handleDeleteClick(card) {
   deletePopup.open();
+  deletePopup.setSubmitAction(() => {
+    deletePopup.setLoading(true);
+    api
+      .handleDeleteCard(card.id)
+      .then(() => {
+        card.deleteCard();
+        deletePopup.close();
+        deletePopup.setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
 }
 
 const validationSettings = {
