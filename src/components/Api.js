@@ -1,30 +1,26 @@
-import UserInfo from "./UserInfo";
-
 export default class Api {
   constructor(options) {
     // constructor body
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
   }
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error ${res.status}`);
+  }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    });
+    }).then(this._checkResponse);
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    });
+    }).then(this._checkResponse);
   }
 
   updateUserInfo(userInfo) {
@@ -32,11 +28,7 @@ export default class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify(userInfo),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    });
+    }).then(this._checkResponse);
   }
 
   addCard(cardData) {
@@ -44,11 +36,7 @@ export default class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(cardData),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    });
+    }).then(this._checkResponse);
   }
 
   updateAvatarPhoto(Avatar) {
@@ -56,11 +44,7 @@ export default class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify(Avatar),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    });
+    }).then(this._checkResponse);
   }
 
   handleLike(cardId, isLiked) {
@@ -68,22 +52,14 @@ export default class Api {
       method: isLiked ? "DELETE" : "PUT",
       headers: this._headers,
       body: JSON.stringify(),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    });
+    }).then(this._checkResponse);
   }
 
   handleDeleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    });
+    }).then(this._checkResponse);
   }
 }
 

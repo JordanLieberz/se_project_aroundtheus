@@ -53,10 +53,15 @@ const userInfo = new UserInfo(
   ".profile__image"
 );
 
-api.getUserInfo().then((userData) => {
-  userInfo.setUserInfo(userData);
-  userInfo.setAvatar(userData.avatar);
-});
+api
+  .getUserInfo()
+  .then((userData) => {
+    userInfo.setUserInfo(userData);
+    userInfo.setAvatar(userData.avatar);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const addCardPopup = new PopupWithForm(
   "#card-add-modal",
@@ -74,11 +79,11 @@ const addImagePopup = new PopupWithImage("#view-image-modal");
 
 addImagePopup.setEventListeners();
 
-const ChangeProfilePicture = new PopupWithForm(
+const changeProfilePicture = new PopupWithForm(
   "#profile-picture-modal",
   handleAvatarFormSubmit
 );
-ChangeProfilePicture.setEventListeners();
+changeProfilePicture.setEventListeners();
 
 const deletePopup = new PopupWithForm("#delete-popup");
 deletePopup.setEventListeners();
@@ -86,7 +91,7 @@ deletePopup.setEventListeners();
 const avatarElement = document.querySelector(".profile__avatar-container");
 
 avatarElement.addEventListener("click", () => {
-  ChangeProfilePicture.open();
+  changeProfilePicture.open();
 });
 
 const selector = ".cards__list";
@@ -164,18 +169,18 @@ function handleAddCardFormSubmit(values) {
     });
 }
 function handleAvatarFormSubmit(values) {
-  ChangeProfilePicture.setLoading(true);
+  changeProfilePicture.setLoading(true);
   api
     .updateAvatarPhoto(values)
     .then((userData) => {
       userInfo.setAvatar(userData.avatar);
-      ChangeProfilePicture.close();
+      changeProfilePicture.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      ChangeProfilePicture.setLoading(false);
+      changeProfilePicture.setLoading(false);
     });
 }
 
@@ -196,9 +201,14 @@ function handleCardClick(data) {
 }
 
 function handleLikeClick(card) {
-  api.handleLike(card.id, card.isLiked).then((res) => {
-    card.updateIsLiked(res.isLiked);
-  });
+  api
+    .handleLike(card.id, card.isLiked)
+    .then((res) => {
+      card.updateIsLiked(res.isLiked);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 function handleDeleteClick(card) {
   deletePopup.open();
@@ -209,21 +219,16 @@ function handleDeleteClick(card) {
       .then(() => {
         card.deleteCard();
         deletePopup.close();
-        deletePopup.setLoading(false);
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        deletePopup.setLoading(false);
       });
   });
 }
 
-const validationSettings = {
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
 function getCardElement(data) {
   const card = new Card(
     data,
