@@ -6,15 +6,30 @@ import "./index.css";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 import Api from "../components/Api.js";
-
-const config = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__submit-button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
+import {
+  config,
+  profileEditButton,
+  addCardModal,
+  profileEditModal,
+  profileModalCloseButton,
+  addCardModalCloseButton,
+  profileNameInput,
+  profileName,
+  profileDescriptionInput,
+  profileDescription,
+  saveButton,
+  addNewCardButton,
+  profileEditForm,
+  addCardFormElement,
+  cardListEl,
+  viewImageCloseButton,
+  cardTitleInput,
+  cardUrlInput,
+  profileSubmitButton,
+  wrapper,
+  avatarElement,
+  selector,
+} from "../../utils/constants.js";
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -88,42 +103,9 @@ changeProfilePicture.setEventListeners();
 const deletePopup = new PopupWithForm("#delete-popup");
 deletePopup.setEventListeners();
 
-const avatarElement = document.querySelector(".profile__avatar-container");
-
 avatarElement.addEventListener("click", () => {
   changeProfilePicture.open();
 });
-
-const selector = ".cards__list";
-
-const modal = document.querySelector(".modal");
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".card");
-
-const profileEditButton = document.querySelector("#profile-edit-button");
-const addCardModal = document.querySelector("#card-add-modal");
-const profileEditModal = document.querySelector("#profile-edit-modal");
-const profileModalCloseButton = profileEditModal.querySelector(
-  "#profile-close-button"
-);
-const addCardModalCloseButton = addCardModal.querySelector(".modal__close");
-const profileNameInput = document.querySelector("#name-input");
-const profileName = document.querySelector("#profile-name");
-const profileDescriptionInput = document.querySelector("#about-me");
-const profileDescription = document.querySelector("#profile-description");
-const saveButton = document.querySelector("#modal-save-button");
-const addNewCardButton = document.querySelector(".profile__add-button");
-const profileEditForm = profileEditModal.querySelector(".modal__form");
-const addCardFormElement = addCardModal.querySelector(".modal__form");
-const cardListEl = document.querySelector(".card__list");
-const viewImageCloseButton = document.querySelector("#image-modal-close");
-const cardTitleInput = addCardFormElement.querySelector(
-  ".modal__input_type_title"
-);
-const cardUrlInput = addCardFormElement.querySelector(".modal__input_type_url");
-const profileSubmitButton = document.querySelector("#profile-save-button");
-const wrapper = document.querySelector(".cards__list");
 
 const cardFormValidator = new FormValidator(config, addCardFormElement);
 cardFormValidator.enableValidation();
@@ -191,10 +173,6 @@ profileEditButton.addEventListener("click", () => {
   profileEditFormValidator.toggleButtonState();
   editProfilePopup.open();
 });
-
-const popupImage = document.querySelector(".modal__image");
-const popupCaption = document.querySelector(".modal__caption");
-const previewPopupNode = document.getElementById("view-image-modal");
 
 function handleCardClick(data) {
   addImagePopup.open(data);
