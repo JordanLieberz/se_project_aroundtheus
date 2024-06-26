@@ -113,6 +113,9 @@ cardFormValidator.enableValidation();
 const profileEditFormValidator = new FormValidator(config, profileEditForm);
 profileEditFormValidator.enableValidation();
 
+// const avatarFormValidator = new FormValidator(config, changeProfilePicture);
+// avatarFormValidator.enableValidation();
+
 function handleProfileEditSubmit(values) {
   // change text to 'saving...'
   editProfilePopup.setLoading(true);

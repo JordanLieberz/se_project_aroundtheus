@@ -19,7 +19,6 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._cardElement;
     this._likeButton.addEventListener("click", () => {
       this._handleLikeClick(this);
     });
