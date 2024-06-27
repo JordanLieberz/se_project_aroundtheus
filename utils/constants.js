@@ -13,6 +13,7 @@ export const profileEditModal = document.querySelector("#profile-edit-modal");
 export const profileModalCloseButton = profileEditModal.querySelector(
   "#profile-close-button"
 );
+export const avatarEditModal = document.querySelector("#change-avatar-button");
 export const addCardModalCloseButton =
   addCardModal.querySelector(".modal__close");
 export const profileNameInput = document.querySelector("#name-input");
