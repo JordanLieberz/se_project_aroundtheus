@@ -28,6 +28,7 @@
   width: 430px;
   border-radius: 10px;
   padding: 34px 36px 36px 36px;
+  box-sizing: border-box;
 }
 
 .modal__header {
@@ -128,6 +129,7 @@
 }
 .modal__error {
   color: red;
+  font-size: 12px;
   position: absolute;
   top: 34px;
   left: 0;
@@ -151,7 +153,7 @@
   .modal__container {
     width: 282px;
     height: 322px;
-    padding: 0;
+    padding: 0 36px;
   }
   .modal__header {
     padding-left: 22px;
