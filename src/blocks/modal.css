@@ -129,6 +129,7 @@
 }
 .modal__error {
   color: red;
+  font-size: 12px;
   position: absolute;
   top: 34px;
   left: 0;

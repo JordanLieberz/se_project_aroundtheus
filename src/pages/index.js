@@ -32,6 +32,23 @@ import {
   selector,
 } from "../../utils/constants.js";
 
+const formValidators = {};
+
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    // Here you get the name of the form (if you don’t have it then you need to add it into each form in `index.html` first)
+    const formName = formElement.getAttribute("name");
+
+    // Here you store the validator using the `name` of the form
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(config);
+console.log(formValidators);
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -108,15 +125,6 @@ avatarElement.addEventListener("click", () => {
   changeProfilePicture.open();
 });
 
-const cardFormValidator = new FormValidator(config, addCardFormElement);
-cardFormValidator.enableValidation();
-
-const profileEditFormValidator = new FormValidator(config, profileEditForm);
-profileEditFormValidator.enableValidation();
-
-const avatarFormValidator = new FormValidator(config, avatarEditModal);
-avatarFormValidator.enableValidation();
-
 function handleProfileEditSubmit(values) {
   // change text to 'saving...'
   editProfilePopup.setLoading(true);
@@ -172,9 +180,8 @@ function handleAvatarFormSubmit(values) {
 
 profileEditButton.addEventListener("click", () => {
   const values = userInfo.getUserInfo();
-  profileNameInput.value = values.name;
-  profileDescriptionInput.value = values.about;
-  profileEditFormValidator.toggleButtonState();
+  editProfilePopup.setInputValues(values);
+  formValidators.editProfileForm.toggleButtonState();
   editProfilePopup.open();
 });
 
@@ -224,6 +231,6 @@ function getCardElement(data) {
 }
 
 addNewCardButton.addEventListener("click", () => {
-  cardFormValidator.toggleButtonState();
+  formValidators.newCardForm.toggleButtonState();
   addCardPopup.open();
 });

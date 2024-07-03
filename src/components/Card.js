@@ -27,11 +27,9 @@ export default class Card {
       .addEventListener("click", () => {
         this._handleDeleteClick(this);
       });
-    this._cardElement
-      .querySelector(".card__image")
-      .addEventListener("click", () => {
-        this._handleCardClick({ name: this._name, link: this._link });
-      });
+    this._cardImage.addEventListener("click", () => {
+      this._handleCardClick({ name: this._name, link: this._link });
+    });
   }
 
   updateIsLiked(isLiked) {
@@ -56,10 +54,10 @@ export default class Card {
       .querySelector(this._cardSelector)
       .content.querySelector(".card")
       .cloneNode(true);
-
+    this._cardImage = this._cardElement.querySelector(".card__image");
     this._cardElement.querySelector(".card__title").innerText = this._name;
-    this._cardElement.querySelector(".card__image").src = this._link;
-    this._cardElement.querySelector(".card__image").alt = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     // set alt text
     // get the card view
     //set event listeners

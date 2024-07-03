@@ -11,55 +11,59 @@ export default class Api {
     return Promise.reject(`Error ${res.status}`);
   }
 
+  _request(url, options) {
+    return fetch(`${this._baseUrl}/${url}`, options).then(this._checkResponse);
+  }
+
   getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
+    return this._request("cards", {
       headers: this._headers,
-    }).then(this._checkResponse);
+    });
   }
 
   getUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return this._request("users/me", {
       headers: this._headers,
-    }).then(this._checkResponse);
+    });
   }
 
   updateUserInfo(userInfo) {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return this._request("users/me", {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify(userInfo),
-    }).then(this._checkResponse);
+    });
   }
 
   addCard(cardData) {
-    return fetch(`${this._baseUrl}/cards`, {
+    return this._request("cards", {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(cardData),
-    }).then(this._checkResponse);
+    });
   }
 
   updateAvatarPhoto(Avatar) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
+    return this._request("users/me/avatar", {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify(Avatar),
-    }).then(this._checkResponse);
+    });
   }
 
   handleLike(cardId, isLiked) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+    return this._request(`cards/${cardId}/likes`, {
       method: isLiked ? "DELETE" : "PUT",
       headers: this._headers,
       body: JSON.stringify(),
-    }).then(this._checkResponse);
+    });
   }
 
   handleDeleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+    return this._request(`cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then(this._checkResponse);
+    });
   }
 }
 
